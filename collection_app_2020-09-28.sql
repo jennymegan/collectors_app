@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.31)
 # Database: collection_app
-# Generation Time: 2020-09-28 10:20:57 +0000
+# Generation Time: 2020-09-28 10:44:04 +0000
 # ************************************************************
 
 
@@ -20,12 +20,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-# Dump of table collection_data
+# Dump of table my_vinyl_collection_data
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `collection_data`;
+DROP TABLE IF EXISTS `my_vinyl_collection_data`;
 
-CREATE TABLE `collection_data` (
+CREATE TABLE `my_vinyl_collection_data` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `artist_firstname` varchar(100) NOT NULL DEFAULT '',
   `artist_lastname` varchar(100) DEFAULT NULL,
@@ -35,10 +35,10 @@ CREATE TABLE `collection_data` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `collection_data` WRITE;
-/*!40000 ALTER TABLE `collection_data` DISABLE KEYS */;
+LOCK TABLES `my_vinyl_collection_data` WRITE;
+/*!40000 ALTER TABLE `my_vinyl_collection_data` DISABLE KEYS */;
 
-INSERT INTO `collection_data` (`id`, `artist_firstname`, `artist_lastname`, `album`, `year`, `cover_art`)
+INSERT INTO `my_vinyl_collection_data` (`id`, `artist_firstname`, `artist_lastname`, `album`, `year`, `cover_art`)
 VALUES
 	(1,'Fiona','Apple','When The Pawn','1999','Fiona_apple_when_the_pawn.jpg'),
 	(2,'Alanis','Morrissette','Jagged Little Pill','1995','Alanis_m_jagged.jpg'),
@@ -51,7 +51,7 @@ VALUES
 	(9,'Pink','Floyd','Wish You Were Here','1975','Pink_Floyd_Wish_You_Were_Here.png'),
 	(10,'Mike','Oldfield','Crises','1983','Mike_oldfield_crises.jpg');
 
-/*!40000 ALTER TABLE `collection_data` ENABLE KEYS */;
+/*!40000 ALTER TABLE `my_vinyl_collection_data` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
