@@ -75,6 +75,7 @@ h6 {
     display: flex;
     height: auto;
     min-height: 850px;
+    min-width: 400px;
     justify-content: space-evenly;
     flex-wrap: wrap;
     align-items: stretch;
