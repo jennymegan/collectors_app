@@ -9,10 +9,16 @@
 </head>
 
     <body>
+     <div class="title_bar">
+         <div class="logo"><img src="" alt=""></div>
+    <h1>My Vinyl Collection</h1>
+         <input class="new_item_button" type="submit" value="Add Vinyl">
+     </div>
+     <div class="container">
     <?php
     $db = new PDO('mysql:host=db;dbname=collection_app', 'root','password');
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $query=$db->prepare('SELECT `cover_art`, `artist_firstname`, `artist_lastname`, `album`, `year`, `cover_art` FROM `my_vinyl_collection` ');
+    $query=$db->prepare('SELECT `cover_art`, `artist_firstname`, `artist_lastname`, `album`, `year`, `cover_art` FROM `my_vinyl_collection`; ');
     $query->execute();
     $vinylDetails=$query->fetchAll();
 
@@ -35,6 +41,10 @@
           </div>
     <?php
     } ?>
+     </div>
     </body>
+        <footer>
+            <h6>Copyright J A-T 2020 &copy;</h6>
+        </footer>
 </html>
 
