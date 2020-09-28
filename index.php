@@ -10,8 +10,8 @@
 
     <body>
      <div class="title_bar">
-         <div class="logo"><img src="" alt=""></div>
-    <h1>My Vinyl Collection</h1>
+         <div class="logo"><img src="logo1.png" alt="Jenny Logo"></div>
+    <h1>MY VINYL COLLECTION</h1>
          <input class="new_item_button" type="submit" value="Add Vinyl">
      </div>
      <div class="container">
