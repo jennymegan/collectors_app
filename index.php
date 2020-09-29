@@ -16,31 +16,13 @@
      </div>
      <div class="container">
     <?php
-    $db = new PDO('mysql:host=db;dbname=collection_app', 'root','password');
-    $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    include ('functions.php');
+    $db = getDatabase('collection_app');
     $query=$db->prepare('SELECT `cover_art`, `artist_firstname`, `artist_lastname`, `album`, `year`, `cover_art` FROM `my_vinyl_collection`; ');
     $query->execute();
     $vinylDetails=$query->fetchAll();
-
-      foreach($vinylDetails as $Details) {
-          $coverArt = $Details['cover_art'];
-          $artistFirstName = $Details['artist_firstname'];
-          $artistLastName = $Details['artist_lastname'];
-          $album = $Details['album'];
-          $year = $Details['year'];
-          ?>
-          <div class="collection_item">
-              <div>
-                  <img src="<?php echo $coverArt?>" alt="Cover Art [If Available]">
-              </div>
-              <div>
-                  <h4>Artist Name: <?php echo $artistFirstName . " " . $artistLastName?></h4>
-                  <h4>Album Name: <?php echo $album ?></h4>
-                  <h4>Year Released: <?php echo $year ?></h4>
-              </div>
-          </div>
-    <?php
-    } ?>
+    echo populateTable($vinylDetails);
+    ?>
      </div>
     </body>
         <footer>

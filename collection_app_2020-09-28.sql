@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.31)
 # Database: collection_app
-# Generation Time: 2020-09-28 12:57:34 +0000
+# Generation Time: 2020-09-29 08:29:02 +0000
 # ************************************************************
 
 
@@ -32,7 +32,8 @@ CREATE TABLE `my_vinyl_collection` (
   `album` varchar(100) NOT NULL DEFAULT '',
   `year` year(4) NOT NULL,
   `cover_art` varchar(1000) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `artist_firstname` (`artist_firstname`,`album`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `my_vinyl_collection` WRITE;

@@ -1,8 +1,8 @@
 /*Font*/
 
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,400;1,100;1,200&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
 
 /*General CSS - normalize file contains most of it */
 
@@ -23,7 +23,9 @@ body {
 /*Text*/
 
 h1 {
-    font-family: "Josefin Sans";
+    font-family: "Monoton";
+    font-weight: 100;
+    font-size: 2.3rem;
 }
 
 h4 {
@@ -34,7 +36,7 @@ h4 {
 h6 {
     font-size: 0.9rem;
     font-weight: 200;
-    padding: 20px 0 0 0;
+    padding: 20px 0;
     margin: 0;
 }
 
@@ -56,15 +58,15 @@ h6 {
     background-color: #f5e0db;
     border: 2px solid #000500;
     border-radius: 5px;
+    margin: 10px;
 }
 .new_item_button:hover {
-    text-shadow: 0 0 0.4px #000500;
+    text-shadow: 0 0 0.2px #000500;
     transition-delay: 0.08s;
 }
 
-
 .logo img{
-    margin-top: 20px;
+    margin-top: 15px;
     width: 50px;
     height: 50px;
 }
@@ -97,7 +99,6 @@ h6 {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    object-fit: cover;
     width: 100%;
     height: auto;
     background-color: #b0bfd5;
@@ -107,14 +108,16 @@ footer {
     text-align: center;
     padding: 10px;
     box-shadow: inset 0 0 10px #000500;
+    background-color: #C70039;
 }
 
 
  /*Media Queries*/
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 600px) {
     h1 {
-        font-size: 0.8rem;
+        font-size: 1.4rem;
+        margin-top: 25px;
     }
 
 }
