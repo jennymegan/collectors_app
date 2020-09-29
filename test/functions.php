@@ -53,7 +53,7 @@ class Functions extends TestCase {
     public function testFailurePopulateTable()
     {
         $input=[['artist_firstname' =>'Testy', 'album' => 'Test', 'wrong_key' => 1987]];
-        $expectedOutput = 'Incorrect Key Applied';
+        $expectedOutput = '';
         $result=populateTable($input);
         $this->assertEquals($expectedOutput, $result);
 
@@ -62,7 +62,7 @@ class Functions extends TestCase {
     public function testFailurePopulateTable2()
     {
         $input=[['artist_firstname' =>'Testy', 'wrong_key' => 'Test', 'year' => 1987]];
-        $expectedOutput = 'Incorrect Key Applied';
+        $expectedOutput = '';
         $result=populateTable($input);
         $this->assertEquals($expectedOutput, $result);
 
@@ -71,7 +71,7 @@ class Functions extends TestCase {
     public function testFailurePopulateTable3()
     {
         $input=[['wrong_key' =>'Testy', 'album' => 'Test', 'year' => 1987]];
-        $expectedOutput = 'Incorrect Key Applied';
+        $expectedOutput = '';
         $result=populateTable($input);
         $this->assertEquals($expectedOutput, $result);
 
