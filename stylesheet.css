@@ -30,12 +30,10 @@ h1 {
 
 h4 {
     font-size: 1rem;
-    font-weight: 200;
 }
 
 h6 {
     font-size: 0.9rem;
-    font-weight: 200;
     padding: 20px 0;
     margin: 0;
 }
@@ -60,6 +58,7 @@ h6 {
     border-radius: 5px;
     margin: 10px;
 }
+
 .new_item_button:hover {
     text-shadow: 0 0 0.2px #000500;
     transition-delay: 0.08s;
@@ -111,7 +110,6 @@ footer {
     background-color: #C70039;
 }
 
-
  /*Media Queries*/
 
 @media screen and (max-width: 600px) {
@@ -119,12 +117,9 @@ footer {
         font-size: 1.4rem;
         margin-top: 25px;
     }
-
 }
 
-
 @media screen and (max-width: 475px) {
-
     .logo img {
         display: none;
     }
