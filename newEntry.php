@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +10,6 @@
     <link href="normalize.css" type="text/css" rel="stylesheet">
     <link href="stylesheet.css" type="text/css" rel="stylesheet">
 </head>
-<!-- REMEMBER TO PUT THE STYLESHEET BACK-->
 <body>
 <div class="title_bar">
     <div class="logo"><img src="logo1.png" alt="Jenny Logo"></div>
@@ -20,10 +22,16 @@
         <li class="form_row"><label>Artist Last Name: </label><input type="text" name="artist_lastname"></li>
         <li class="form_row"><label>Album*: </label><input type="text" name="album"></li>
         <li class="form_row"><label>Release Year (YYYY)*: </label><input type="text" name="year" maxlength="4"></li>
-        <li class="form_row"><label>Album Art: </label><input type="file" name="cover_art" value="Upload"></li>
+        <li class="form_row"><label>Album Art: </label><input type="file" name="cover_art"></li>
         <li class="form_row"><input class="add_vinyl_button" type = "submit" name="upload" value="Add My Vinyl!"></li>
         </ul>
     </form>
+    <?php
+    if (isset($_SESSION['Error'])) {
+        echo $_SESSION['Error'];
+        unset($_SESSION['Error']);
+    }
+    ?>
     <a href="index.php"><h4>Back to Collection<h4></h4></a>
 </div>
 
