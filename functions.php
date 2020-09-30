@@ -4,11 +4,11 @@
  *
  * @param $dbName database The name of the database to connect to
  *
- * @return databaseObject The database ready to have information extracted
+ * @return PDO The connection between database & server ready to have information extracted
  *
  */
 
-function getDatabase($dbName) {
+function getDatabase(database $dbName): PDO {
     $db = new PDO('mysql:host=db;dbname=' . $dbName, 'root','password');
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $db;
@@ -27,34 +27,23 @@ function getDatabase($dbName) {
  */
 function populateTable(array $vinylDetails): string {
     $result = '';
-    foreach ($vinylDetails as $Details) {
-        if (isset($Details['artist_firstname']) &&
-            isset($Details['album']) &&
-            isset($Details['year'])) {
+    foreach ($vinylDetails as $vinyl) {
+        if (isset($vinyl['artist_firstname']) &&
+            isset($vinyl['album']) &&
+            isset($vinyl['year'])) {
 
-            if (isset($Details['cover_art'])) {
-                $coverArt = $Details['cover_art'];
-            } else {
-                $coverArt = 'no_img.jpg';
-            }
-            $artistFirstName = $Details['artist_firstname'];
-            if (isset($Details['artist_lastname'])) {
-                $artistLastName = $Details['artist_lastname'];
-            } else {
-                $artistLastName = '';
-            }
-            $album = $Details['album'];
-            $year = $Details['year'];
+            $vinyl['cover_art'] = $vinyl['cover_art'] ?? 'no_img.jpg';
+            $vinyl['artist_lastname'] = $vinyl['artist_lastname'] ?? '';
 
             $result .= ' 
                  <div class="collection_item">
                   <div>
-                     <img src="' . $coverArt . '" alt="Cover Art [If Available]">
+                     <img src="'. $vinyl['cover_art'].'" alt="Cover Art [If Available]">
                   </div>
                   <div class="info_text">
-                      <h4>Artist Name: ' . $artistFirstName . ' ' . $artistLastName . '</h4>
-                      <h4>Album Name: ' . $album . '</h4>
-                      <h4>Year Released: ' . $year . '</h4>
+                      <h4>Artist Name: ' . $vinyl['artist_firstname'] . ' ' . $vinyl['artist_lastname'] . '</h4>
+                      <h4>Album Name: ' . $vinyl['album'] . '</h4>
+                      <h4>Year Released: ' . $vinyl['year']. '</h4>
                     </div>
                    </div>';
         }
