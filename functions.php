@@ -32,13 +32,13 @@ function populateTable(array $vinylDetails): string {
             isset($Details['album']) &&
             isset($Details['year'])) {
 
-            if (isset($Details['cover_art'])) {
+            if ($Details['cover_art'] != NULL) {
                 $coverArt = $Details['cover_art'];
             } else {
                 $coverArt = 'no_img.jpg';
             }
             $artistFirstName = $Details['artist_firstname'];
-            if (isset($Details['artist_lastname'])) {
+            if ($Details['artist_lastname'] != NULL) {
                 $artistLastName = $Details['artist_lastname'];
             } else {
                 $artistLastName = '';
