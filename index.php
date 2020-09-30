@@ -18,9 +18,9 @@
     <?php
     include ('functions.php');
     $db = getDatabase('collection_app');
-    $query=$db->prepare('SELECT `artist_firstname`, `artist_lastname`, `album`, `year`, `cover_art` FROM `my_vinyl_collection`; ');
+    $query = $db->prepare('SELECT `artist_firstname`, `artist_lastname`, `album`, `year`, `cover_art` FROM `my_vinyl_collection`; ');
     $query->execute();
-    $vinylDetails=$query->fetchAll();
+    $vinylDetails = $query->fetchAll();
     echo populateTable($vinylDetails);
     ?>
      </div>

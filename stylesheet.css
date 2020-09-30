@@ -42,7 +42,7 @@ h6 {
 
 .title_bar {
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
     overflow: hidden;
     position: fixed;
     top: 0;
@@ -64,7 +64,7 @@ h6 {
     transition-delay: 0.08s;
 }
 
-.logo img{
+.logo img {
     margin-top: 15px;
     width: 50px;
     height: 50px;

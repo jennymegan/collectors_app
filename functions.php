@@ -28,9 +28,11 @@ function getDatabase(database $dbName): PDO {
 function populateTable(array $vinylDetails): string {
     $result = '';
     foreach ($vinylDetails as $vinyl) {
-        if (isset($vinyl['artist_firstname']) &&
+        if (
+            isset($vinyl['artist_firstname']) &&
             isset($vinyl['album']) &&
-            isset($vinyl['year'])) {
+            isset($vinyl['year'])
+            ) {
 
             $vinyl['cover_art'] = $vinyl['cover_art'] ?? 'no_img.jpg';
             $vinyl['artist_lastname'] = $vinyl['artist_lastname'] ?? '';
@@ -38,7 +40,7 @@ function populateTable(array $vinylDetails): string {
             $result .= ' 
                  <div class="collection_item">
                   <div>
-                     <img src="'. $vinyl['cover_art'].'" alt="Cover Art [If Available]">
+                     <img src="' . $vinyl['cover_art']. '" alt="Cover Art [If Available]">
                   </div>
                   <div class="info_text">
                       <h4>Artist Name: ' . $vinyl['artist_firstname'] . ' ' . $vinyl['artist_lastname'] . '</h4>
