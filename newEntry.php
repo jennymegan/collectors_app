@@ -12,28 +12,30 @@ session_start();
 </head>
 <body>
 <div class="title_bar">
-    <div class="logo"><img src="logo1.png" alt="Jenny Logo"></div>
+    <div class="logo">
+        <img src="logo1.png" alt="Jenny Logo">
+    </div>
     <h1>MY VINYL COLLECTION</h1>
     <div></div>
 </div>
 <div class="container">
     <form action="newEntryHandling.php" enctype='multipart/form-data' method="POST">
         <ul class=""form_wrapper">
-        <li class="form_row"><label>Artist First Name*: </label><input type="text" name="artist_firstname"></li>
+        <li class="form_row"><label>Artist First Name*: </label><input type="text" name="artist_firstname" required></li>
         <li class="form_row"><label>Artist Last Name: </label><input type="text" name="artist_lastname"></li>
-        <li class="form_row"><label>Album*: </label><input type="text" name="album"></li>
-        <li class="form_row"><label>Release Year (YYYY)*: </label><input type="text" name="year" maxlength="4"></li>
+        <li class="form_row"><label>Album*: </label><input type="text" name="album" required></li>
+        <li class="form_row"><label>Release Year (YYYY)*: </label><input type="text" name="year" maxlength="4" required></li>
         <li class="form_row"><label>Album Art: </label><label class="file_upload"><input class="file_upload" type="file" name="cover_art"></label></li>
         <li class="form_row"><input class="add_vinyl_button" type = "submit" name="upload" value="Add My Vinyl!"></li>
         </ul>
     </form>
     <div class="error">
-    <h4><?php
-    if (isset($_SESSION['Error'])) {
+        <h4><?php
+        if (isset($_SESSION['Error'])) {
         echo $_SESSION['Error'];
         unset($_SESSION['Error']);
-    }
-    ?></h4>
+        } ?>
+        </h4>
     </div>
     <a class="back_collection" href="index.php"><h4>Back to Collection</h4></a>
 </div>
