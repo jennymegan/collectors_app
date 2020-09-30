@@ -14,6 +14,7 @@ session_start();
 <div class="title_bar">
     <div class="logo"><img src="logo1.png" alt="Jenny Logo"></div>
     <h1>MY VINYL COLLECTION</h1>
+    <div></div>
 </div>
 <div class="container">
     <form action="newEntryHandling.php" enctype='multipart/form-data' method="POST">
@@ -22,17 +23,19 @@ session_start();
         <li class="form_row"><label>Artist Last Name: </label><input type="text" name="artist_lastname"></li>
         <li class="form_row"><label>Album*: </label><input type="text" name="album"></li>
         <li class="form_row"><label>Release Year (YYYY)*: </label><input type="text" name="year" maxlength="4"></li>
-        <li class="form_row"><label>Album Art: </label><input type="file" name="cover_art"></li>
+        <li class="form_row"><label>Album Art: </label><label class="file_upload"><input class="file_upload" type="file" name="cover_art"></label></li>
         <li class="form_row"><input class="add_vinyl_button" type = "submit" name="upload" value="Add My Vinyl!"></li>
         </ul>
     </form>
-    <?php
+    <div class="error">
+    <h4><?php
     if (isset($_SESSION['Error'])) {
         echo $_SESSION['Error'];
         unset($_SESSION['Error']);
     }
-    ?>
-    <a href="index.php"><h4>Back to Collection<h4></h4></a>
+    ?></h4>
+    </div>
+    <a class="back_collection" href="index.php"><h4>Back to Collection</h4></a>
 </div>
 
 </body>
