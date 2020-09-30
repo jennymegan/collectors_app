@@ -34,8 +34,24 @@ function populateTable(array $vinylDetails): string {
             isset($vinyl['year'])
             ) {
 
+<<<<<<< HEAD
+            if ($Details['cover_art'] != NULL) {
+                $coverArt = $Details['cover_art'];
+            } else {
+                $coverArt = 'no_img.jpg';
+            }
+            $artistFirstName = $Details['artist_firstname'];
+            if ($Details['artist_lastname'] != NULL) {
+                $artistLastName = $Details['artist_lastname'];
+            } else {
+                $artistLastName = '';
+            }
+            $album = $Details['album'];
+            $year = $Details['year'];
+=======
             $vinyl['cover_art'] = $vinyl['cover_art'] ?? 'no_img.jpg';
             $vinyl['artist_lastname'] = $vinyl['artist_lastname'] ?? '';
+>>>>>>> story1
 
             $result .= ' 
                  <div class="collection_item">
