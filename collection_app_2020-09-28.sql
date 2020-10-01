@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.31)
 # Database: collection_app
-# Generation Time: 2020-09-29 08:29:02 +0000
+# Generation Time: 2020-10-01 14:05:19 +0000
 # ************************************************************
 
 
@@ -32,6 +32,7 @@ CREATE TABLE `my_vinyl_collection` (
   `album` varchar(100) NOT NULL DEFAULT '',
   `year` year(4) NOT NULL,
   `cover_art` varchar(1000) DEFAULT NULL,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `artist_firstname` (`artist_firstname`,`album`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -39,18 +40,18 @@ CREATE TABLE `my_vinyl_collection` (
 LOCK TABLES `my_vinyl_collection` WRITE;
 /*!40000 ALTER TABLE `my_vinyl_collection` DISABLE KEYS */;
 
-INSERT INTO `my_vinyl_collection` (`id`, `artist_firstname`, `artist_lastname`, `album`, `year`, `cover_art`)
+INSERT INTO `my_vinyl_collection` (`id`, `artist_firstname`, `artist_lastname`, `album`, `year`, `cover_art`, `deleted`)
 VALUES
-	(1,'Fiona','Apple','When The Pawn','1999','Fiona_apple_when_the_pawn.jpg'),
-	(2,'Alanis','Morrissette','Jagged Little Pill','1995','Alanis_m_jagged.jpg'),
-	(3,'Aimee','Mann','Bachelor No. 2','2000','Aimee_m_bachelor.jpg'),
-	(4,'Garbage',NULL,'Garbage','1995','Garbage_garbage.jpg'),
-	(5,'Brandi','Carlile','Give Up The Ghost','2009','Brandi_Carlile_Give_Up_the_Ghost.png'),
-	(6,'Amanda','Palmer','Who Killed Amanda Palmer','2008','amanda_palmer_who_killed.jpg'),
-	(7,'Kate','Bush','Hounds Of Love','1985','kate_bush_hounds.jpg'),
-	(8,'Roger ','Glover','Elements','1978','Roger_glover_elements.jpg'),
-	(9,'Pink','Floyd','Wish You Were Here','1975','Pink_Floyd_Wish_You_Were_Here.png'),
-	(10,'Mike','Oldfield','Crises','1983','Mike_oldfield_crises.jpg');
+	(1,'Fiona','Apple','When The Pawn','1999','Fiona_apple_when_the_pawn.jpg',0),
+	(2,'Alanis','Morrissette','Jagged Little Pill','1995','Alanis_m_jagged.jpg',0),
+	(3,'Aimee','Mann','Bachelor No. 2','2000','Aimee_m_bachelor.jpg',0),
+	(4,'Garbage',NULL,'Garbage','1995','Garbage_garbage.jpg',0),
+	(5,'Brandi','Carlile','Give Up The Ghost','2009','Brandi_Carlile_Give_Up_the_Ghost.png',0),
+	(6,'Amanda','Palmer','Who Killed Amanda Palmer','2008','amanda_palmer_who_killed.jpg',0),
+	(7,'Kate','Bush','Hounds Of Love','1985','kate_bush_hounds.jpg',0),
+	(8,'Roger ','Glover','Elements','1978','Roger_glover_elements.jpg',0),
+	(9,'Pink','Floyd','Wish You Were Here','1975','Pink_Floyd_Wish_You_Were_Here.png',0),
+	(10,'Mike','Oldfield','Crises','1983','Mike_oldfield_crises.jpg',0);
 
 /*!40000 ALTER TABLE `my_vinyl_collection` ENABLE KEYS */;
 UNLOCK TABLES;

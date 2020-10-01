@@ -28,6 +28,9 @@ function getDatabase(string $dbName): PDO {
 function populateTable(array $vinylDetails): string {
     $result = '';
     foreach ($vinylDetails as $vinyl) {
+        if ($vinyl['deleted']) {
+            continue;
+        }
         if (
             isset($vinyl['artist_firstname']) &&
             isset($vinyl['album']) &&
@@ -44,6 +47,12 @@ function populateTable(array $vinylDetails): string {
                       <h4>Artist Name: ' . $vinyl['artist_firstname'] . ' ' . $vinyl['artist_lastname'] . '</h4>
                       <h4>Album Name: ' . $vinyl['album'] . '</h4>
                       <h4>Year Released: ' . $vinyl['year']. '</h4>
+                      <div>
+                          <form class="delete_form" action="removeVinyl.php" method="POST">
+                            <input type="hidden" name="vinyl_id" value="' . $vinyl['id'] .'">
+                            <input type="submit" class="delete_button" name="delete" value="Remove">
+                          </form>
+                      </div>
                     </div>
                    </div>';
         }
@@ -77,6 +86,8 @@ function addNewVinylNoArt(array $vinylArray,PDO $db){
         header('Location: newEntry.php?error=2');
     }
 }
+
+
 
 /**
  * Adds the array of POST data to the database and also an image file (if meets certain filetype)
@@ -117,9 +128,26 @@ function addNewVinylWithArt(array $vinylArray, array $file,PDO $db)
                     header('Location: newEntry.php?error=3');
                 }
             } else {
-                   header('Location: newEntry.php?error=1');
+              
+                header('Location: newEntry.php?error=1');
+
             }
         }
+    }
+}
+
+
+/**
+ * "Removes" an item ftom display (by changing its deleted index in db to 1)
+ *
+ * @param PDO $db the database to connect to
+ *
+ */
+function deleteVinyl(PDO $db) {
+    if (isset($_POST['delete']) ) {
+        $query = $db->prepare('UPDATE `my_vinyl_collection` SET `deleted` = 1 WHERE `id` = ?');
+        $query->execute([$_POST['vinyl_id']]);
+        header('Location: index.php');
     }
 }
 

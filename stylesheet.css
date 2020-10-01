@@ -177,12 +177,24 @@ a {
     cursor: pointer;
 }
 
+.delete_button {
+    height: 30px;
+    font-size: 0.6rem;
+    cursor: pointer;
+    margin: 10px;
+}
+
 .error {
     display: block;
     width: 100%;
     text-align: center;
 }
 
+.delete_form {
+    display: flex;
+    width: 100%;
+    min-width: 200px;
+}
 
 /*Media Queries*/
 
