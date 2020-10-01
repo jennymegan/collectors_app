@@ -47,10 +47,12 @@ function populateTable(array $vinylDetails): string {
                       <h4>Artist Name: ' . $vinyl['artist_firstname'] . ' ' . $vinyl['artist_lastname'] . '</h4>
                       <h4>Album Name: ' . $vinyl['album'] . '</h4>
                       <h4>Year Released: ' . $vinyl['year']. '</h4>
-                      <form action="removeVinyl.php" method="POST">
-                      <input type="hidden" name="vinyl_id" value="' . $vinyl['id'] .'">
-                        <input type="submit" name="delete" value="Remove">
-                      </form>
+                      <div>
+                          <form class="delete_form" action="removeVinyl.php" method="POST">
+                            <input type="hidden" name="vinyl_id" value="' . $vinyl['id'] .'">
+                            <input type="submit" class="delete_button" name="delete" value="Remove">
+                          </form>
+                      </div>
                     </div>
                    </div>';
         }
