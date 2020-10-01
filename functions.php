@@ -7,13 +7,11 @@
  * @return PDO The connection between database & server ready to have information extracted
  *
  */
-
 function getDatabase(string $dbName): PDO {
     $db = new PDO('mysql:host=db;dbname=' . $dbName, 'root','password');
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $db;
 }
-
 
 /**
  * Takes a given array with expected keys, returns "blocks" of html which use values from the array as variables.
@@ -28,9 +26,6 @@ function getDatabase(string $dbName): PDO {
 function populateTable(array $vinylDetails): string {
     $result = '';
     foreach ($vinylDetails as $vinyl) {
-        if ($vinyl['deleted']) {
-            continue;
-        }
         if (
             isset($vinyl['artist_firstname']) &&
             isset($vinyl['album']) &&
@@ -143,7 +138,11 @@ function addNewVinylWithArt(array $vinylArray, array $file,PDO $db)
 function deleteVinyl(PDO $db) {
     if (isset($_POST['delete']) ) {
         $query = $db->prepare('UPDATE `my_vinyl_collection` SET `deleted` = 1 WHERE `id` = ?');
-        $query->execute([$_POST['vinyl_id']]);
-        header('Location: index.php');
+        if ($query->execute([$_POST['vinyl_id']]) ) {
+            header('Location: index.php');
+        }
+        else {
+            header('Location: index.php?error=3');
+        }
     }
 }
