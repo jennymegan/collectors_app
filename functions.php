@@ -131,3 +131,17 @@ function addNewVinylWithArt(array $vinylArray, array $file,PDO $db)
         }
     }
 }
+
+/**
+ * "Removes" an item ftom display (by changing its deleted index in db to 1)
+ *
+ * @param PDO $db the database to connect to
+ *
+ */
+function deleteVinyl(PDO $db) {
+    if (isset($_POST['delete']) ) {
+        $query = $db->prepare('UPDATE `my_vinyl_collection` SET `deleted` = 1 WHERE `id` = ?');
+        $query->execute([$_POST['vinyl_id']]);
+        header('Location: index.php');
+    }
+}
