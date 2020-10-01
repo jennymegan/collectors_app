@@ -67,12 +67,7 @@ a:hover {
     cursor: pointer;
 }
 
-<<<<<<< HEAD
 .logo img{
-=======
-.logo img {
-    margin-top: 15px;
->>>>>>> story1
     width: 50px;
     height: 50px;
 }
@@ -189,7 +184,7 @@ a {
 }
 
 
- /*Media Queries*/
+/*Media Queries*/
 
 @media screen and (max-width: 600px) {
     h1 {
