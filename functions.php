@@ -2,13 +2,13 @@
 /**
  * Connects to a named database
  *
- * @param $dbName database The name of the database to connect to
+ * @param $dbName string The name of the database to connect to
  *
  * @return PDO The connection between database & server ready to have information extracted
  *
  */
 
-function getDatabase(database $dbName): PDO {
+function getDatabase(string $dbName): PDO {
     $db = new PDO('mysql:host=db;dbname=' . $dbName, 'root','password');
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $db;
@@ -33,10 +33,8 @@ function populateTable(array $vinylDetails): string {
             isset($vinyl['album']) &&
             isset($vinyl['year'])
             ) {
-
             $vinyl['cover_art'] = $vinyl['cover_art'] ?? 'no_img.jpg';
             $vinyl['artist_lastname'] = $vinyl['artist_lastname'] ?? '';
-
             $result .= ' 
                  <div class="collection_item">
                   <div>
@@ -53,4 +51,75 @@ function populateTable(array $vinylDetails): string {
     return $result;
 }
 
+/**
+ * Adds the array of POST data to the database
+ *
+ * @param array $vinylArray array of info collected from form
+ *
+ * @param PDO $db database to connect to
+ *
+ */
+function addNewVinylNoArt(array $vinylArray,PDO $db){
+
+    if (
+        !empty($vinylArray['artist_firstname']) &&
+        !empty($vinylArray['album']) &&
+        !empty($vinylArray['year'])
+    ) {
+        $vinylArray['artist_lastname'] = $vinylArray['artist_lastname'] ?? '';
+        $query = $db->prepare('INSERT INTO `my_vinyl_collection` (`artist_firstname`, `album`, `year`, `artist_lastname`) VALUES (:artist_firstname, :album, :year, :artist_lastname); ');
+        if ($query->execute($vinylArray) ) {
+            header('Location: index.php');
+        } else {
+            header('Location: newEntry.php?error=3');
+        }
+    } else {
+        header('Location: newEntry.php?error=2');
+    }
+}
+
+/**
+ * Adds the array of POST data to the database and also an image file (if meets certain filetype)
+ *
+ * @param array $vinylArray array of info collected from form
+ *
+ * @param array $file the file array collected from form
+ *
+ * @param PDO $db database to connect to
+ *
+ */
+function addNewVinylWithArt(array $vinylArray, array $file,PDO $db)
+{
+    if (
+        !empty($vinylArray['artist_firstname']) &&
+        !empty($vinylArray['album']) &&
+        !empty($vinylArray['year'])
+    ) {
+        if (!empty($file['cover_art']['name'])) {
+            $name = $file['cover_art']['name'];
+            $target_dir = dirname(__FILE__);
+            $target_file = $target_dir . '/' . basename($file['cover_art']['name']);
+
+            // Check file type is ok
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+            $extensions_arr = ["jpg", "jpeg", "png", "gif"];
+
+            if (in_array($imageFileType, $extensions_arr)) {
+                move_uploaded_file($file['cover_art']['tmp_name'], $target_file);
+
+                //Upload data with cover image
+                $vinylArray['artist_lastname'] = $vinylArray['artist_lastname'] ?? '';
+                $vinylArray['cover_art'] = $name;
+                $query = $db->prepare('INSERT INTO `my_vinyl_collection` (`artist_firstname`, `album`, `year`, `artist_lastname`, `cover_art`) VALUES (:artist_firstname, :album, :year, :artist_lastname, :cover_art); ');
+                if ($query->execute($vinylArray) ) {
+                    header('Location: index.php');
+                } else {
+                    header('Location: newEntry.php?error=3');
+                }
+            } else {
+                   header('Location: newEntry.php?error=1');
+            }
+        }
+    }
+}
 

@@ -1,6 +1,6 @@
 /*Font*/
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
 
@@ -15,7 +15,7 @@
 body {
     font-size: 62.5%;
     font-family: "Montserrat", Helvetica;
-    font-weight: 200;
+    font-weight: 100;
     color: #000500;
     background-color: #f5e0db;
 }
@@ -30,11 +30,12 @@ h1 {
 
 h4 {
     font-size: 1rem;
+    font-weight: 100;
 }
 
 h6 {
     font-size: 0.9rem;
-    padding: 20px 0;
+    padding: 20px;
     margin: 0;
 }
 
@@ -42,7 +43,8 @@ h6 {
 
 .title_bar {
     display: flex;
-    justify-content: space-around;
+    justify-content:space-around;
+    align-items: center;
     overflow: hidden;
     position: fixed;
     top: 0;
@@ -52,20 +54,20 @@ h6 {
     background-image: linear-gradient(#C70039 , #d76144, #C70039 );
 }
 
-.new_item_button{
+.title_bar a{
     background-color: #f5e0db;
     border: 2px solid #000500;
     border-radius: 5px;
-    margin: 10px;
+    padding: 0 10px;
 }
 
-.new_item_button:hover {
+a:hover {
     text-shadow: 0 0 0.2px #000500;
     transition-delay: 0.08s;
+    cursor: pointer;
 }
 
-.logo img {
-    margin-top: 15px;
+.logo img{
     width: 50px;
     height: 50px;
 }
@@ -75,7 +77,7 @@ h6 {
 .container {
     display: flex;
     height: auto;
-    min-height: 850px;
+    min-height: 950px;
     min-width: 400px;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -110,7 +112,79 @@ footer {
     background-color: #C70039;
 }
 
- /*Media Queries*/
+/*Form Styling*/
+
+form{
+    width: 90%;
+    min-width: 600px;
+    margin-top: 100px;
+}
+
+.form_wrapper {
+    list-style-type: none;
+    padding: 0;
+    border-radius: 3px;
+}
+
+.form_row {
+    display: flex;
+    justify-content: flex-end;
+    padding: .5em;
+}
+
+.form_row label {
+    padding: .5em 1em .5em 0;
+    flex: 1;
+}
+
+.form_row input {
+    flex: 2;
+}
+
+.form_row button {
+    background: gray;
+    color: white;
+    border: 0;
+    width: 50%;
+}
+
+label {
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: #000500;
+    display: block;
+}
+
+.back-collection h4 {
+    background-color: #f5e0db;
+    border: 2px solid #000500;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+.file-upload{
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+}
+
+.add_vinyl_button {
+    height: 40px;
+    width: 80%;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.error {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+
+/*Media Queries*/
 
 @media screen and (max-width: 600px) {
     h1 {

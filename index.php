@@ -12,12 +12,13 @@
      <div class="title_bar">
          <div class="logo"><img src="logo1.png" alt="Jenny Logo"></div>
     <h1>MY VINYL COLLECTION</h1>
-         <input class="new_item_button" type="submit" value="Add Vinyl">
+         <a href="newEntry.php"><h4>Add Vinyl</h4></a>
      </div>
      <div class="container">
     <?php
     include ('functions.php');
     $db = getDatabase('collection_app');
+
     $query = $db->prepare('SELECT `artist_firstname`, `artist_lastname`, `album`, `year`, `cover_art` FROM `my_vinyl_collection`; ');
     $query->execute();
     $vinylDetails = $query->fetchAll();
