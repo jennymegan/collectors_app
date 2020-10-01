@@ -123,11 +123,14 @@ function addNewVinylWithArt(array $vinylArray, array $file,PDO $db)
                     header('Location: newEntry.php?error=3');
                 }
             } else {
+              
                 header('Location: newEntry.php?error=1');
+
             }
         }
     }
 }
+
 
 /**
  * "Removes" an item ftom display (by changing its deleted index in db to 1)
@@ -146,3 +149,4 @@ function deleteVinyl(PDO $db) {
         }
     }
 }
+
