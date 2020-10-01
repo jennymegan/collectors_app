@@ -44,6 +44,7 @@ function populateTable(array $vinylDetails): string {
                       <h4>Artist Name: ' . $vinyl['artist_firstname'] . ' ' . $vinyl['artist_lastname'] . '</h4>
                       <h4>Album Name: ' . $vinyl['album'] . '</h4>
                       <h4>Year Released: ' . $vinyl['year']. '</h4>
+                      <h4></h4><input id="' . $vinyl['id'] . '" value="Delete"></h4>
                     </div>
                    </div>';
         }
@@ -121,4 +122,16 @@ function addNewVinylWithArt(array $vinylArray, array $file,PDO $db)
     exit;
 }
 
+
+
+delete item {
+    chnage deleted to 0
+
+    'UPDATE `my_vinyl_collection` SET `deleted` = 1 WHERE `id` =' . $vinyl['id'] .';'
+}
+
+add to populated table fn
+    if !deleted
+        display
+        else continue;
 
