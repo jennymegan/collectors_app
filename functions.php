@@ -28,6 +28,9 @@ function getDatabase(string $dbName): PDO {
 function populateTable(array $vinylDetails): string {
     $result = '';
     foreach ($vinylDetails as $vinyl) {
+        if ($vinyl['deleted']) {
+            continue;
+        }
         if (
             isset($vinyl['artist_firstname']) &&
             isset($vinyl['album']) &&
@@ -44,7 +47,10 @@ function populateTable(array $vinylDetails): string {
                       <h4>Artist Name: ' . $vinyl['artist_firstname'] . ' ' . $vinyl['artist_lastname'] . '</h4>
                       <h4>Album Name: ' . $vinyl['album'] . '</h4>
                       <h4>Year Released: ' . $vinyl['year']. '</h4>
-                      <h4></h4><input id="' . $vinyl['id'] . '" value="Delete"></h4>
+                      <form action="removeVinyl.php" method="POST">
+                      <input type="hidden" name="vinyl_id" value="' . $vinyl['id'] .'">
+                        <input type="submit" name="delete" value="Remove">
+                      </form>
                     </div>
                    </div>';
         }
@@ -69,14 +75,17 @@ function addNewVinylNoArt(array $vinylArray,PDO $db){
     ) {
         $vinylArray['artist_lastname'] = $vinylArray['artist_lastname'] ?? '';
         $query = $db->prepare('INSERT INTO `my_vinyl_collection` (`artist_firstname`, `album`, `year`, `artist_lastname`) VALUES (:artist_firstname, :album, :year, :artist_lastname); ');
-        $query->execute($vinylArray);
-        header('Location: index.php');
-        exit;
+        if ($query->execute($vinylArray) ) {
+            header('Location: index.php');
+        } else {
+            header('Location: newEntry.php?error=3');
+        }
     } else {
         header('Location: newEntry.php?error=2');
-        exit;
     }
 }
+
+
 
 /**
  * Adds the array of POST data to the database and also an image file (if meets certain filetype)
@@ -111,27 +120,14 @@ function addNewVinylWithArt(array $vinylArray, array $file,PDO $db)
                 $vinylArray['artist_lastname'] = $vinylArray['artist_lastname'] ?? '';
                 $vinylArray['cover_art'] = $name;
                 $query = $db->prepare('INSERT INTO `my_vinyl_collection` (`artist_firstname`, `album`, `year`, `artist_lastname`, `cover_art`) VALUES (:artist_firstname, :album, :year, :artist_lastname, :cover_art); ');
-                $query->execute($vinylArray);
+                if ($query->execute($vinylArray) ) {
+                    header('Location: index.php');
+                } else {
+                    header('Location: newEntry.php?error=3');
+                }
             } else {
                 header('Location: newEntry.php?error=1');
-                exit;
             }
         }
     }
-    header('Location: index.php');
-    exit;
 }
-
-
-
-delete item {
-    chnage deleted to 0
-
-    'UPDATE `my_vinyl_collection` SET `deleted` = 1 WHERE `id` =' . $vinyl['id'] .';'
-}
-
-add to populated table fn
-    if !deleted
-        display
-        else continue;
-
