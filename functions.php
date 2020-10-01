@@ -68,12 +68,13 @@ function addNewVinylNoArt(array $vinylArray,PDO $db){
     ) {
         $vinylArray['artist_lastname'] = $vinylArray['artist_lastname'] ?? '';
         $query = $db->prepare('INSERT INTO `my_vinyl_collection` (`artist_firstname`, `album`, `year`, `artist_lastname`) VALUES (:artist_firstname, :album, :year, :artist_lastname); ');
-        $query->execute($vinylArray);
-        header('Location: index.php');
-        exit;
+        if ($query->execute($vinylArray) ) {
+            header('Location: index.php');
+        } else {
+            header('Location: newEntry.php?error=3');
+        }
     } else {
         header('Location: newEntry.php?error=2');
-        exit;
     }
 }
 
@@ -110,15 +111,15 @@ function addNewVinylWithArt(array $vinylArray, array $file,PDO $db)
                 $vinylArray['artist_lastname'] = $vinylArray['artist_lastname'] ?? '';
                 $vinylArray['cover_art'] = $name;
                 $query = $db->prepare('INSERT INTO `my_vinyl_collection` (`artist_firstname`, `album`, `year`, `artist_lastname`, `cover_art`) VALUES (:artist_firstname, :album, :year, :artist_lastname, :cover_art); ');
-                $query->execute($vinylArray);
+                if ($query->execute($vinylArray) ) {
+                    header('Location: index.php');
+                } else {
+                    header('Location: newEntry.php?error=3');
+                }
             } else {
-                header('Location: newEntry.php?error=1');
-                exit;
+                   header('Location: newEntry.php?error=1');
             }
         }
     }
-    header('Location: index.php');
-    exit;
 }
-
 
