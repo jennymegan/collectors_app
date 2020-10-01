@@ -50,6 +50,8 @@
             echo '<br><br><h2>You attempted to upload the incorrect filetype. Please try again. </h2><br><br>';
         } elseif (isset($_GET['error']) && $_GET['error'] == 2) {
             echo '<br><br><h2>An error occurred. Please try again.</h2><br><br>';
+        } elseif (isset($_GET['error']) && $_GET['error'] == 3) {
+            echo '<br><br><h2>An error occurred querying the database. Please try again.</h2><br><br>';
         } ?>
         </h4>
     </div>
