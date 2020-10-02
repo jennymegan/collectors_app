@@ -6,8 +6,8 @@ use PHPUnit\Framework\TestCase;
 class Functions extends TestCase {
     public function testSuccessPopulateTable()
     {
-        $input=[['cover_art' => 'test.jpg', 'artist_firstname' =>'Testy', 'artist_lastname' => 'Testerson', 'album' => 'Test', 'year' => 1987]];
-        $expectedOutput=' 
+        $input=[['cover_art' => 'test.jpg', 'artist_firstname' =>'Testy', 'artist_lastname' => 'Testerson', 'album' => 'Test', 'year' => 1987, 'id' => 1]];
+        $expectedOutput='
                  <div class="collection_item">
                   <div>
                      <img src="test.jpg" alt="Cover Art [If Available]">
@@ -16,6 +16,12 @@ class Functions extends TestCase {
                       <h4>Artist Name: Testy Testerson</h4>
                       <h4>Album Name: Test</h4>
                       <h4>Year Released: 1987</h4>
+                      <div>
+                          <form class="delete_form" action="removeVinyl.php" method="POST">
+                            <input type="hidden" name="vinyl_id" value="1">
+                            <input type="submit" class="delete_button" name="delete" value="Remove">
+                          </form>
+                      </div>
                     </div>
                    </div>';
 
@@ -25,8 +31,8 @@ class Functions extends TestCase {
 
     public function testSuccessPopulateTableMinReqdFields()
     {
-        $input=[['artist_firstname' =>'Testy', 'album' => 'Test', 'year' => 1987]];
-        $expectedOutput=' 
+        $input=[['artist_firstname' =>'Testy', 'album' => 'Test', 'year' => 1987, 'id' => 1]];
+        $expectedOutput='
                  <div class="collection_item">
                   <div>
                      <img src="no_img.jpg" alt="Cover Art [If Available]">
@@ -35,6 +41,12 @@ class Functions extends TestCase {
                       <h4>Artist Name: Testy </h4>
                       <h4>Album Name: Test</h4>
                       <h4>Year Released: 1987</h4>
+                      <div>
+                          <form class="delete_form" action="removeVinyl.php" method="POST">
+                            <input type="hidden" name="vinyl_id" value="1">
+                            <input type="submit" class="delete_button" name="delete" value="Remove">
+                          </form>
+                      </div>
                     </div>
                    </div>';
 

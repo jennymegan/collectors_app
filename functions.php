@@ -33,7 +33,7 @@ function populateTable(array $vinylDetails): string {
             ) {
             $vinyl['cover_art'] = $vinyl['cover_art'] ?? 'no_img.jpg';
             $vinyl['artist_lastname'] = $vinyl['artist_lastname'] ?? '';
-            $result .= ' 
+            $result .= '
                  <div class="collection_item">
                   <div>
                      <img src="' . $vinyl['cover_art']. '" alt="Cover Art [If Available]">
